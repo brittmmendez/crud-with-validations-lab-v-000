@@ -13,6 +13,8 @@ class SongsController < ApplicationController
   end
 
   def create
+      @song=Song.new(song_params(:title, :release_year, :released, :genre, :artist_name))
+    
   end
 
   def edit
@@ -23,5 +25,10 @@ class SongsController < ApplicationController
   end
 
   def delete
+  end
+
+  private
+  def song_params(*args)
+    params.require(:song).permit(*args)
   end
 end
